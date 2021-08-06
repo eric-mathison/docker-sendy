@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+    # MySQL Database
+    sendy-db:
+        image: ericmathison/mariadb:latest
+        volumes:
+            - db-data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "rootpassword"
+            MYSQL_DATABASE: "sendy"
+            MYSQL_USER: "sendy"
+            MYSQL_PASSWORD: "sendypassword"
+
+    # Sendy Webapp
+    sendy:
+        image: ericmathison/sendy:latest
+        depends_on:
+            - sendy-db
+        environment:
+            SENDY_FQDN: "localhost"
+            MYSQL_HOST: "sendy-db"
+            MYSQL_USER: "sendy"
+            MYSQL_PASSWORD: "sendypassword"
+            MYSQL_DATABASE: "sendy"
+            SENDY_PROTOCOL: "http"
+        ports:
+            - 80:80
+
+volumes:
+    db-data:

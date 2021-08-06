@@ -4,7 +4,7 @@
 	//----------------------------------------------------------------------------------//
 	
 	/*  Set the URL to your Sendy installation (without the trailing slash) */
-	define('APP_PATH', (!empty(getenv('SENDY_PROTOCOL')) ? getenv('SENDY_PROTOCOL') : 'http') . '://' . getenv('SENDY_FQDN'));
+	define('APP_PATH', (!empty(getenv('SENDY_PROTOCOL')) ? getenv('SENDY_PROTOCOL') : 'https') . '://' . getenv('SENDY_FQDN'));
 	
 	/*  MySQL database connection credentials (please place values between the apostrophes) */
 	$dbHost = getenv('MYSQL_HOST'); //MySQL Hostname
@@ -24,7 +24,7 @@
 	$charset = 'utf8mb4';
 	
 	/*  Set this if you use a non standard MySQL port.  */
-	$dbPort = 3306;	
+	$dbPort = !empty(getenv('MYSQL_PORT')) ? getenv('MYSQL_PORT') : 3306;
 	
 	/*  Domain of cookie (99.99% chance you don't need to edit this at all)  */
 	define('COOKIE_DOMAIN', '');
