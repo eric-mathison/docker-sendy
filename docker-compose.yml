@@ -16,6 +16,8 @@ services:
         image: ericmathison/sendy:latest
         depends_on:
             - sendy-db
+        volumes:
+            - sendy-data:/var/www/html
         environment:
             SENDY_FQDN: "localhost"
             MYSQL_HOST: "sendy-db"
@@ -28,3 +30,4 @@ services:
 
 volumes:
     db-data:
+    sendy-data:
