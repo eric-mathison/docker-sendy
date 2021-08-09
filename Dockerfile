@@ -32,6 +32,8 @@ RUN unzip /tmp/sendy-${SENDY_VER}.zip -d /tmp \
     Header unset \"X-Powered-By\"\n" >> /var/www/html/.htaccess \
     && printf "[PHP]\nerror_reporting = E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED\n" > /usr/local/etc/php/conf.d/error_reporting.ini
 
+COPY sendy.ini /usr/local/etc/php/conf.d/sendy.ini
+
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
 
